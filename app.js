@@ -22,6 +22,12 @@ function createGrid() {
 createGrid();
 window.addEventListener('resize', createGrid);
 
+// Add click listener for the gift box icon
+const giftBox = document.getElementById('giftBox');
+if (giftBox) {
+  giftBox.addEventListener('click', triggerGridAnimation);
+}
+
 /**
  * Data for Projects and Blogs
  */
@@ -45,6 +51,37 @@ const blogsData = [
     file: "hello-world.md"
   }
 ];
+
+/**
+ * Triggers a vertical flip animation on the background grid tiles
+ */
+function triggerGridAnimation() {
+  const tiles = document.querySelectorAll('.title-item');
+  if (tiles.length === 0) return;
+
+  const cellSize = 40;
+  const cols = Math.ceil(window.innerWidth / cellSize);
+    const itemsPerRow = Math.floor(cols / 2);
+
+    tiles.forEach((tile, i) => {
+      // Reset animation
+      tile.classList.remove('flip');
+      void tile.offsetWidth; // Trigger reflow
+      
+      // Calculate staggered delay based on grid position (top-left to bottom-right flow)
+      const row = Math.floor(i / itemsPerRow);
+      const col = i % itemsPerRow;
+      tile.style.animationDelay = `${(row * 1.2 + col) * 0.05}s`;
+      
+      tile.classList.add('flip');
+      
+      // Clean up to allow re-triggering
+      tile.addEventListener('animationend', () => {
+        tile.classList.remove('flip');
+        tile.style.animationDelay = '';
+      }, { once: true });
+    });
+}
 
 /**
  * Navigation and content switching with smooth transitions
@@ -107,7 +144,7 @@ async function loadPost(type, filename) {
  */
 function navigateTo(section, updateHistory = true) {
   const isHome = section === 'home' || section === '' || section === '/';
-  
+
   if (isHome) {
     appWrapper.classList.remove('section-mode');
     mainContent.innerHTML = homeContent;

@@ -21,9 +21,31 @@ body {
   overflow-x: hidden;
 }
 
-/* Utility to disable transitions */
-.no-transition * {
-  transition: none !important;
+/* Gift Box Icon */
+.gift-box {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  z-index: 101;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.gift-box:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.gift-box svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--text-color);
 }
 
 /* Background Grid */
@@ -45,6 +67,26 @@ body {
   border-right: 1px solid var(--grid-color);
   border-bottom: 1px solid var(--grid-color);
   box-sizing: border-box;
+  transform-style: preserve-3d;
+  will-change: transform, background-color;
+}
+
+@keyframes flipTile {
+  0% {
+    transform: perspective(1000px) rotate3d(1, 1, 0, 0deg);
+    background-color: transparent;
+  }
+  50% {
+    background-color: #533afa;
+  }
+  100% {
+    transform: perspective(1000px) rotate3d(1, 1, 0, 180deg);
+    background-color: transparent;
+  }
+}
+
+.title-item.flip {
+  animation: flipTile 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* App Layout */
@@ -71,9 +113,8 @@ body {
   z-index: 1;
 }
 
-/* Section State */
-.app-wrapper.section-mode .nav-links {
-  margin-bottom: 2rem; /* Tighter gap when at top */
+.app-wrapper.section-mode .social-links {
+  display: none;
 }
 
 /* Navbar */
