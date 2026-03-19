@@ -1,13 +1,6 @@
 :root {
   --bg-color: #141413;
   --text-color: #f0eee6;
-  --grid-color: rgba(240, 238, 230, 0.015);
-  --border-color: rgba(240, 238, 230, 0.2);
-  --accent-opacity: 0.1;
-  --hover-opacity: 0.3;
-  --section-gap: 4rem; /* Balanced space between sections */
-  --line-gap: 2rem;    /* Gap between title and description */
-  --desc-gap: 0.15rem; /* Extremely tight gap between description lines */
 }
 
 body {
@@ -15,96 +8,29 @@ body {
   padding: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 400;
-  overflow-y: auto;
-  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+  font-weight: 200;
 }
 
-/* Gift Box Icon */
-.gift-box {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
-  cursor: pointer;
-  z-index: 101;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.6;
-}
 
-.gift-box:hover {
-  transform: scale(1.1);
-  opacity: 1;
-}
 
-.gift-box svg {
-  width: 24px;
-  height: 24px;
-  stroke: var(--text-color);
-}
 
-/* Background Grid */
-.background-grid {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 40px);
-  grid-template-rows: repeat(auto-fill, 40px);
-  z-index: -1;
-}
+/* Main container */
 
-.title-item {
-  grid-column: span 2;
-  grid-row: span 2;
-  border-right: 1px solid var(--grid-color);
-  border-bottom: 1px solid var(--grid-color);
-  box-sizing: border-box;
-  transform-style: preserve-3d;
-  will-change: transform, background-color;
-}
-
-@keyframes flipTile {
-  0% {
-    transform: perspective(1000px) rotate3d(1, 1, 0, 0deg);
-    background-color: transparent;
-  }
-  50% {
-    background-color: #533afa;
-  }
-  100% {
-    transform: perspective(1000px) rotate3d(1, 1, 0, 180deg);
-    background-color: transparent;
-  }
-}
-
-.title-item.flip {
-  animation: flipTile 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* App Layout */
-.app-wrapper {
+.app-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to the top */
+  justify-content: center; 
+  padding: 0 2rem 0 2rem ;
   min-height: 100vh;
-  padding: 80px 40px 40px 40px; 
   box-sizing: border-box;
 }
 
-.spacer {
-  display: none; /* Removed spacers */
-}
+/* Sub container */
 
-.content-wrapper {
+.contents {
   display: flex;
+  font-weight: 100px;
   flex-direction: column;
   width: 100%;
   max-width: 640px; /* 8 squares of 80px */
@@ -113,212 +39,83 @@ body {
   z-index: 1;
 }
 
-.app-wrapper.section-mode .social-links {
-  display: none;
+
+/* Header */
+.header{
+  margin: 0 0 2rem 0;
 }
 
-/* Navbar */
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: var(--section-gap); 
-  padding: 10px 0; /* Added vertical padding for sticky */
-  position: sticky;
-  top: 0;
-  z-index: 100;
+p{
+  margin: 0;
 }
 
-.brand {
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.sre{
+  opacity: 0.5;
+}
+
+/* Title */
+
+#position{
+  opacity: 0.5;
+}
+
+.work{
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.about{
+  margin: 0 0 1rem 0 ;
+}
+
+
+
+/* Links */
+
+.work > a{
   text-decoration: none;
-  color: var(--text-color);
 }
-
-.nav-right {
-  display: flex;
-  gap: 2.5rem;
-}
-
-.nav-links a {
+.about a{
   text-decoration: none;
-  color: var(--text-color);
-  font-size: 0.9rem;
-  text-transform: lowercase;
-  opacity: 0.6;
-  font-weight: 300;
 }
 
-.nav-links a:hover {
-  opacity: 1;
-}
 
-/* Main Content Area */
-main {
-  width: 100%;
-  margin-bottom: var(--section-gap); 
-  box-sizing: border-box;
-  min-height: 120px; /* Prevents layout collapse during swaps */
-}
-
-.hero-content {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: var(--line-gap);
-}
-
-.hero-title {
-  font-size: 1rem;
-  margin: 0;
-  color: var(--text-color);
-  opacity: .9;
-  font-weight: 200;
-  display: flex;
-  align-items: center;
-}
-
-.hero-title .dot {
-  margin: 0 0.4rem;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-}
-
-.hero-title .highlight {
-  opacity: .9;
-  color: #fff; /* Brighter */
-  font-weight: 200;
-}
-
-.hero-description {
-  display: flex;
-  flex-direction: column;
-  gap: var(--desc-gap);
-  font-size: 1rem;
-  max-width: 100%;
-  opacity: 1.1;
-  font-weight: 300;
-}
-
-.hero-description p {
-  margin: 0;
-  line-height: 1.8;
-}
-
-/* Social Links */
-.social-links {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1.5rem;
-  padding: 0;
-  width: 100%;
-}
-
-.social-links a {
-  color: var(--text-color);
-  opacity: 0.6;
-  display: flex;
-  align-items: center;
-}
-
-.social-links a:hover {
-  opacity: 1;
-}
-
-.social-links svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-/* Section Containers */
-.section-container {
-  width: 100%;
-}
-
-.section-container h2 {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  text-transform: lowercase;
-  opacity: 0.8;
-  font-weight: 500;
-}
-
-.grid-list {
-  display: grid;
-  grid-template-columns: 1fr; /* List style */
-  gap: 2rem;
-}
-
-.data-item {
-  padding: 0;
-}
-
-.data-item h3.clickable {
-  cursor: pointer;
-  display: inline-block;
-}
-
-.data-item h3.clickable:hover {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.data-item h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #fff;
-}
-
-.data-item p {
-  font-size: 0.9rem;
-  opacity: 0.6;
-  margin: 0;
-  font-weight: 300;
-}
-
-.back-link {
-  display: inline-block;
-  margin-bottom: 2rem;
-  font-size: 0.8rem;
+a{
   color: var(--text-color);
   opacity: 0.5;
-  text-decoration: none;
+  transition: opacity 0.4s ease-in-out;
 }
 
-.back-link:hover {
+.main{
+  gap: 20rem;
+}
+
+a:hover{
   opacity: 1;
 }
 
-.markdown-body {
-  line-height: 1.8;
-  opacity: 0.8;
-  font-weight: 300;
+
+
+.about{
+  line-height: 1.8rem;
+  margin: 0 0 2rem 0;
 }
 
-.markdown-body h1, .markdown-body h2, .markdown-body h3 {
-  color: #fff;
-  font-weight: 500;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+.about > p{
+  margin: 0 0 1rem 0 ;
 }
 
-.markdown-body p {
-  margin-bottom: 1.2rem;
+
+/* SocialLinks */
+
+.socialLinks{
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .app-wrapper {
-    padding: 60px 20px 20px 20px;
-  }
-  .nav-right {
-    gap: 1.5rem;
-  }
+.age{
+  display: flex;
+  justify-content: end;
 }
