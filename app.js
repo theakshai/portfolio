@@ -100,6 +100,7 @@ const homeContent = mainContent.innerHTML;
 function renderList(data, type) {
   return `
     <div class="section-container">
+      <p style="opacity: 0.6; font-weight: 300; margin-bottom: 2rem;">This page is yet to come</p>
       <div class="grid-list">
         ${data.map(item => `
           <div class="data-item">
