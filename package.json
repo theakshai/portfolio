@@ -1,0 +1,21 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "eleventy.config.js",
+  "scripts": {
+    "build": "npx 11ty/eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theakshai/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/theakshai/portfolio/issues"
+  },
+  "homepage": "https://github.com/theakshai/portfolio#readme"
+}
